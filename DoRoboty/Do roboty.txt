@@ -1,0 +1,344 @@
+2024.10.19 - przwrocic domyslny separator EditNew??
+
+
+2016.07.07
+MS Uporzadkowac TPFuncDiagFun przywrocic dzialanie przeliczen
+Jest podwojna zamiana?? P1 i P2
+
+2015.10.08
+SM> ZABLOKOWALEM sprawdzanie kaskady LFP
+    ZHRZadU 760 (do odblokowania!!!)
+
+2015.07.10
+MS> dodanie prostej pionowej w punkcie pacy
+
+2015.07.09
+MS> Na dole raporty Grupa + ID Typoszereg
+MS> P2 w czytaniu danych z wykresu
+MS> Wpisywanie grupy
+MS> 
+
+
+2015.07.05
+MS> SYTOPNIOWE BUDOWANIE iPDP
+MS> Dodaie nowej odnogi PDP
+MS> napisanie konwertera
+MS> napisanie desktopa
+MS> napisanie dostêpu z internetu
+
+
+
+2015.06.22
+MS> Uporzadkowac pobieranie mocy P1 i P2
+
+2015.04.28
+MS>CZytanie masy w przegl¹darce
+MS>MEI do sprawdzenia inny komputer
+
+2014.10.15
+MS> Utworzenie pliku ToDo
+
+2015.04.23
+MS> (OK) Labelka Cisnienie maksymalne bar dane z G/CIs_max
+MS> (OK) Labelka Cisnienie przylaczy (bez bar) dane z G/CIS_PRZ
+MS> Czytanie œrednicy tekstowej
+Nag³owek œrednica przy³¹czy / z pola tekstowego T!/G
+ms> (OK) MEI czytanie z H w form pompy
+MS> (OK)Dodaæ V - wolty w zak³adce silnika
+
+
+2015.04.24
+MS> H zamiast h na zak³adce charakterystyki
+MS> NPSHR sprawdzic
+MS> czytanie masy z G
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+2014.11.29
+1. Do listu jest do³¹czone zadanie liczenia sieci zbiorczej GRU.
+2. Na SVN jest
+3. W PmpCharSumU/ObliczR/198  doda³em licznik 1197 (ten punkt siê wywala)
+4. Ustaw pu³apkê za ifem 
+5. Wczytaj zadanie uruchom obliczenia bêdzie OK
+6. za³¹cz pompê w pompowni P77 jak w opisie
+7. wystartuj obliczenia
+8. Zatrzyma siê na pu³apce
+9. PrzejdŸ do: 
+  aQ := aQ + ch.Q_od_H(aH);
+10. PrzejdŸ do: 
+  OPompa.TFuncCharData.Q_od_H( AH :Double; var OK :Boolean ) :Double;
+11. Nie wychodzi z: 
+  while ((vHMin*vHMax) < 0) and (abs(vH) > eps) do 
+12. próbowa³em podnieœæ drastycznie tolerencjê  do 0,1 i policzy³o
+ale to chyba nie têdy droga?
+13. Mo¿e dodaæ licznik i po okreœlonej liczbie:
+  wy³¹czaæ pêtle,
+  przekazuj¹c najlepszy uzyskany wynik 
+  generowaæ komunikat
+14. Czy to ma jakiœ zwi¹zak z przekraczaniem zakresu charakterystyki??
+
+
+
+2014.11.23
+MS> Pompa rezerwowa
+  - dzielenie przeplywu na liczbe pomp
+  - bez rezerwowej zmiana h doplywu??
+
+2014.10.22
+MS> (OK) Nowe przyk³ady
+MS> (OK)Nowe Testy spojnosci
+MS> (OK)Poprawic Helpa
+MS> (OK) Rysunki pompowni DXF 
+- (OK) Rz Zb justowanie
+- (OK) Wyswietlanie SLV
+
+2014.10.16
+MS>PS W rysunkach pompowni na mapie synoptycznej:
+- (OK) Dla pompowni dwupompowych dorobiæ warian z jedn¹ pomp¹ nie aktywn¹
+
+
+
+2014.09.17
+MS > Dopasuj rozdzielczoœæ ??
+MS> (OK) Przywróæ ustawienia paneli - juz bylo na zakladce ustawienia
+MS> (OK) K¹ty w raporcie 360-
+MS> (OK) PS Tlumczaenie  Pion t³oczn DN 100 np. - do sprawdzenia
+
+MS> (OK) Do raportu do pompy dodaæ typ wirnika Nominalne parametry pompy
+MS> Po³¹czyæ wywo³anie  1 kan +2 + 3 ??
+MS> (OK) Skalowanie okna opcji
+SM> (OK)Rysunki do pompowni wymieniæ 51
+- (OK) do pomp Sl do 11 kW wprowadziæ zamienniki zgodnie z plikiem Xls
+- (OK) zaktualizowaæ pompy SE SL 9-30 kW dla starych numerów wprowadziæ nowe dane
+- (OK) Dodaæ nowe zbiorniki do PUST dodaæ 9 nowych s¹ WebCaps
+- (OK) Zamieniæ pust 1000/1500 na 1000/3000
+- (OK) Dla PUST 1000 mog¹ byæ 2 pompy specyfikacja dla tabKros z katalogu PustKatalog.PDT
+- (OK) zamias LiftStation wstawiæ PEHD-R rysunki s¹ w 51 dwg
+- (OK) Opisy poni¿ej rysunki udostêpniæ do edycji
+- (OK) W nastawach dodaæ z pomp¹ rezerwow¹
+- (OK) ró¿nocowanie kolorów pompy rezerwowej
+
+ 
+2014.07.14
+MS>KR>WS Nie odbudowuje sie plik Structure
+
+2014.07.13
+MS>KR 1. BazyDanych/Pompy/Grundfos - kokazuje siê drzewo
+      2. Klikn¹æ na SL - pokazuje siê zdjêcie na górze, na dole pêk charakterystyk
+      3. Na dole po prawej podœwietliæ i klikn¹æ dowoln¹ krzyw¹
+      4. Wyœwietla siê b³¹d Karalog/No current record
+
+      Sprawdzi³em coœ jest z odwo³aniem do wêz³¹ drzewa w TStructForm.SelectPos(const Ids: array of string);
+      Dzia³a dobrze jak jest jeden poziom odwo³ania (ma³o charakterystyk) a wysypuje siê jak jest wiêcej krzywych na obrazku
+
+2014.07.12
+MS>PS Oczyscic rysunki pomp do symulacji
+MS>PS Dorobic WMF zbiornika PUST pe³/pusty
+MS>PS Dorobic WMF zbiornika Lam pe³/pusty
+
+2014.07.07
+MS>KR Martew pola na liœcie
+MS>KR Pompa sta³ej mocy otwiera siê bez nazwy (przez chwilê coœ siê generowa³o??)
+MS>KR Za w¹ska 1-sz kolumna na liœcie pomp po wpisaniu pompy stalej mocy
+MS>KR Dorobiæ przycisk OK do zamykania okna edycji pomp specjalnych
+MS>KR Czy w combo moze siê wyœwietlaæ:
+   P - pompa sta³ej mocy
+   Q - pompa sta³ej wydasjnoœci
+   H - pompa sta³ego ciœnienia
+
+
+2014.07.06
+MS>KS przesunac stralke przeplywu
+MS>KS przesunac stralke doplywu
+
+2014.07.04
+MS>KS Dorobiæ kolorowe ramki na aktywnych obrazkach
+MS>KS Brak obrazka Stud.G.bmp
+MS>KS Poziom liczenia Hg=0 dla pompowni jest nizej ni¿ dla t³oczni
+        MS>KS Gora.POLI.Ciag.bmp przesuniêty o 1 lun 2 pixele w prawo
+
+
+
+2014.07.02
+MS> Usunac CzyLewar! ZOSTAJE
+
+2014.04.06
+MS>WS CZy mo¿esz znale¿æ b³¹d
+  PDT gru
+  - otwarcie programu
+  - z menu górnego baza danych
+  - przesuniêcie okna i próba zamkniecia - wyœwietla siê b³ad
+
+2014.04.04
+MS>KR 
+Komunikaty o b³êdach bazy
+  - B³¹d odczytu bazy/producent
+  - B³¹d odczytu bazy/pompy
+  - B³¹d odczytu bazy/studnie
+  - B³¹d odczytu bazy/sterowniki
+  - B³¹d odczytu bazy/t³ocznie
+  - B³¹d odczytu bazy/rury
+B³êdy przy doborze pompy
+  - Pompa/B³¹d odczytu bazy A, B, H, M, T ...
+  - Pompa/Niew³¹sciwe dane w bazie A, B, H, M, T ...
+  - Pompa/nieokreslona sprawnoœæ silnika
+  - Pompa/brak rysunku dxf/pdf
+  - Pompa/B³¹d raportu
+
+2014.03.30
+MS>WS Dziory w bazie H
+MS>WS Do nowych pomp silniki?? 
+
+2014.03.17
+MS> wyjasnic Hlewara
+
+MS>KR Diagnostyka KOMUNIKATY PRZYK£ADY
+    1)Ga³¹Ÿ "R2" - prêdkoœæ 0,14 [m/s] mniejsza od minimalnej 0,8 [m/s]
+	  lub
+	  Rura "R2" - prêdkoœæ 0,14 [m/s] mniejsza od minimalnej 0,8 [m/s]
+	  lub
+	  "R2" - prêdkoœæ 0,14 [m/s] mniejsza od minimalnej 0,8 [m/s]
+	(mo¿e to trzecie rozwi¹zanie)  
+	2) "W1" - ciœnienie -48,38 [m] mniejsze od zera
+ 
+	    
+
+
+INSTALATOR:
+1. Nazwa firmy i programu w sciezce inst
+2. Wybor roznych sposobow instalacji (niepotrzebny krok)
+3d:
+1. Widocznosc wewnatrz modelu
+2. Obsluga przyciskow
+SIEC ZBIORCZA
+1. W¹ska kolumna nazwa (ciezka edycja i usuwanie pompy)
+2. Poprawne obliczenie sieci -> przejscie do innej aplikacji powoduje blad
+
+
+2014.03.16
+MS>MP Firma i projektanyt maja byæ w projekcie czy w rejestrze
+
+
+2014.03.15
+MS>MP Co z innymi zbiornikami do innych pompowni
+
+MS>KR Diagnostyka
+  BLEDY
+    1-Brak rozwi¹zanie (punktu przeciêcia charakterystyk)
+    2- Brak pomp w ukladzie
+  OSTRZEZENIA
+    1-Prêdkoœæ w ruroci¹gu poni¿ej okreœlonej wartoœci domyœlnie 0,8 m/s
+    2-Prêdkoœæ w ruroci¹gu powy¿ej okreœlonej wartoœci domyœlnie 5 m/s
+    3-Brak pompy w pomowni
+    4-Zablokowana pompa (Cisnienie wy¿sze ni¿ charalterystyka = zerowe Q) 
+    5-Ujemne ciœnienie w wê¿le
+    6-Ujemny przep³yw w ga³êzi ?? czy to mo¿liwe
+    7-Przekroczenie zakresu pracy
+    8-Przekroczenie zakresu charakterystyki
+
+2014.03.14
+MS MEP> Skalowanie okna w sieci ???
+MS MEP> Diagnostyka czytania ebaz danych
+MS MEP> Upgrad KAtalog PRO
+
+MS>WS 
+
+
+
+2014.03.05
+MS>Hdopl w automacie 0,05 m
+MS>WS Czy w raporcie mo¿na dodaæ czcionkê Calibri
+MS>Przegl¹d Napiosów w programie i raporcie pod wzglêdem polskich liter
+MS>AM Przenieœæ rzêdn¹ dna w zbiorniku na stronê wewnetrzn¹
+MS>AM Zgoda na lustrzeane odbicie
+MS> W³¹czyæ help t³oczni
+MS> Sprawdziæ uwagi z excell'a
+  MS>KR Martwe pola
+  MS>WP CZy usunac kalkulacje kosztow
+  MS> Rys przepompowni
+  MS> TypSilnika Do uzgodnienia
+
+
+
+MS>KR Dorobic aktualizacjê jednostek w pompach specjalnych
+
+
+MS>WS(Do weryfikacji po dostarczeniu listy) Dodac pompy SEV wg listy z numerami
+
+MS>(OK) Maksymalizacja - wstawione w OnShow
+MS>(OK) W trybue automatycznym studnie co najmiej 1200 tylko w œciekowych i z komor¹ zasów
+MS>(OK) Qs = 3l/s
+MS>(OK) Podzieliæ nag³ówek raportu w pionie
+  W lewym oknie umo¿liwiæ wpisanie teksu:
+  Dodaæ FIRMA w opcjach programu 3 linie
+  1 linia - Grundfos Pompy Sp. z o.o.
+  2 linia - ul Klonowa 33 Baranowo k.Poznania
+  3 linia - 62-081 PrzeŸmierowo
+MS>(OK) Wy³¹czyc syfon
+
+MS>(OK) S-tube filtr odpowiednik pomp SE1 SL1
+MS>(OK) odszukac drzewo z s-tube ???
+
+
+2014.02.27
+MS>WS. Dorobic zapisywanie i czytanie linii lamanej w rurociagu tlocznym
+
+2014.01.28
+MS>KR Zmiana nazwy w oknie pompy specjalnej nie zmienia nazwy na liœcie
+MS>KR Doalem opis pomp w helpie. Pzeczytaj. Jakie Masz uwagi , co dodaæ
+MS>KR Opisy osi pomp na wykresie pompy specjalnej
+MS>WS CZy pamietasz jak sie robilo aby w HelpMakerze byly polskie znaki, WS->pamiêtam
+MS>KR Przy przegladaniu bazy, dla typoszeregu, gdy wybieramy pompê przez wskazanie jednej charakterystyki z pêku, po prawej stronie na dole okna,
+      W tabeli nie wyswietlaj¹ si ewszystkie dane. Po kliknieciu na drzewie dane sa uzupelniane.
+	  Waldek ustalil:
+	  W pliku PompySQL jest procedura ACalcFields, w wierszu 737 jest funkcja Locate w zale¿noœci od tego jak wywo³ana (klikniêcie na drzewie lub 
+klikniêcie na charakterystyce) znajduje wiersz w G lub nie znajduje. Nie wiem co zmienia siê w tabeli G ¿e raz znajduje a innym razem nie znajduje.
+CZy mo¿esz nam pomodz?
+
+2014.01.20
+MS>PS Diagnodtyka
+MS>WS>PS Przejscie na XE5
+MS>AM Jakie pliki potrzebne do animacji 3D
+MS>PS Woda za lewarem bardziej widoczna
+MS>PS Dorobic wodê za pojedynczym lewarem
+
+2013.12.28
+MS>PS Chcialem wykorzystac Twoj system zglaszania bledow BledyU w PDP
+jednak w Delphi 7 nie ma kolekcji
+- czy mozna i jest sens to przerobic na inny zapis
+- czy czekamy na przekonwertowanie na XE5?
+
+MS>PS Rysynki do zrobienia
+A) Mapa synoptyczna
+1. T³o bardizej radosne(ze sloneczkiem??) zajrzeæ na strone Grundfosa oni maja ró¿ne foldery
+	(np. Grundfos.pl/przuklady/dom)
+2.1. bmp.Obrazek tloczni, komora wystaj¹ca nad grunt
+2.2. bmp.Obrazek tloczni, komora przejazdowa
+3.1. bmp.Rurociag prosty
+3.2. bmp.Rurociag z lewarem
+3.3. bmp.Ruroci¹g lamany
+4.1.1. bmp.Studzienka Hg+
+4.1.2. bmp.Kolektor Hg+
+4.2.1. bmp.Studzienka Hg na wprost
+4.2.2. bmp.Kolektor Hg na wprost
+4.3.1. bmp.Studzienka Hg0
+4.3.2. bmp.Kolektor Hg0
+4.4.1. bmp.Studzienka Hg0
+4.4.2. bmp.Kolektor Hg0	
+
+B) Symulacja
+5.1. wmf.Komora pe³na 	
+5.2. wmf.Komora pusta
+5.3. bmp(wmf) pompa czerwona
+5.4. bmp(wmf) pompa zielona (szara)
+
+C) Obrazek do Raportu
+6. Na podstawie zamówienia w folderze ???
+
+MS>WS>PS>AM Rozpoznanie obrazka 3D
+	
+	
+2013.12.21
+MS>?? Skalowanie wielkosci pomp ma symulacji
+
+2024.09.24 Usuwanie nieuzywanyck plikow

@@ -1,0 +1,39 @@
+2015.07.09
+MS> Na dole raporty Grupa + ID Typoszereg
+MS> P2 w czytaniu danych z wykresu
+MS> Wpisywanie grupy
+MS> 
+
+
+2015.07.05
+MS> SYTOPNIOWE BUDOWANIE iPDP
+MS> Dodaie nowej odnogi PDP
+MS> napisanie konwertera
+MS> napisanie desktopa
+MS> napisanie dostêpu z internetu
+
+
+
+2015.06.22
+MS> Uporzadkowac pobieranie mocy P1 i P2
+
+2015.04.28
+MS>CZytanie masy w przegl¹darce
+MS>MEI do sprawdzenia inny komputer
+
+2014.10.15
+MS> Utworzenie pliku ToDo
+
+2015.04.23
+MS> (OK) Labelka Cisnienie maksymalne bar dane z G/CIs_max
+MS> (OK) Labelka Cisnienie przylaczy (bez bar) dane z G/CIS_PRZ
+MS> Czytanie œrednicy tekstowej
+Nag³owek œrednica przy³¹czy / z pola tekstowego T!/G
+ms> (OK) MEI czytanie z H w form pompy
+MS> (OK)Dodaæ V - wolty w zak³adce silnika
+
+
+2015.04.24
+MS> H zamiast h na zak³adce charakterystyki
+MS> NPSHR sprawdzic
+MS> czytanie masy z G
