@@ -162,7 +162,8 @@ begin
                                         'PrzeglDokowane',
                                         false );
 
-  SciezkaWkp := ExtractFilePath(ParamStr(0));
+  SciezkaWkp := ExtractFilePath(ParamStr(0));       // Sciezka do naz w katalogu programu - domyslna jezeli nie ma innej w WKP_Glog
+
   SciezkaBmp := Format( '%sbmp/', [SciezkaWkp] );
 
   WkpIniFileName := SciezkaWkp + 'WKP.INI';

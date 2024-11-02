@@ -37,24 +37,27 @@ uses
 
 
 {-----------------------------------------------------------------------------}
+{ szuka plikow TBS (zwykle w katalogu programu)                               }
+{ tworzy liste producentow                                                    }
+{-----------------------------------------------------------------------------}
 function InitDefProd( const SciezkaBaz: string ): TProducenci;
 var
-  res      :TProducenci;   // Lista producentow
-  FName    :string;
-  Wild     :string;
-  Katalog  :string;
-  id       :string;
+  ListaProd :TProducenci;
+  FName     :string;
+  Wild      :string;
+  Katalog   :string;
+  id        :string;
 
-  BaseType :string;        // MS 2024.10.22 dodana wersja nbazy
+  BaseType  :string;        // MS 2024.10.22 dodana wersja nbazy
 
-  i, KatOK :integer;
-  sr, KatSr:TSearchRec;
-  produc   :TProducent;   // pojedynczy producent
-  F        :TextFile;
-  IniF     :TIniFile;
-  bi       :TBaseInfo;
+  i, KatOK  :integer;
+  sr, KatSr :TSearchRec;
+  Producent :TProducent;   // pojedynczy producent
+  F         :TextFile;
+  IniF      :TIniFile;
+  bi        :TBaseInfo;
 begin
-  res := Producenci;                                              // Producenci o objekt z okna glownego
+  ListaProd := Producenci;                                              // Producenci o objekt z okna glownego
   Katalog := SciezkaBaz + '\*.*';
   KatOK := FindFirst( Katalog, faDirectory, KatSr );
   try
@@ -81,22 +84,22 @@ begin
             begin
               id := copy( sr.Name, 3, pos( '.', sr.Name)-3 );          // po co to Id MS 2024.10.22 ???
 
-              produc := TProducent.CreateFromTBSFile( IniF,
+              Producent := TProducent.CreateFromTBSFile( IniF,
                                                       ExtractFilePath(FName),
-                                                      res);                         // robi liste baz dla producenta na podstawie TBS
+                                                      ListaProd);                         // robi liste baz dla producenta na podstawie TBS
 
-              BaseType := IniF.ReadString('MAIN', 'BaseType', '' );
+              // MS 2024 BaseType := IniF.ReadString('MAIN', 'BaseType', '' );
 
-              if WerProdPomp and (produc.Ident = GlobProdId) then
+              if WerProdPomp and (Producent.Ident = GlobProdId) then
               begin
-                SciezkaZasob := produc.SciezkaDoBaz+'\';
+                SciezkaZasob := Producent.SciezkaDoBaz+'\';
               end;
-              InitForm.DodajProducenta( produc );
-              res.AddProd( produc );
+              InitForm.DodajProducenta( Producent );
+              ListaProd.AddProd( Producent );
               if WerProdPomp then
-                if produc.Ident = GlobProdId then
+                if Producent.Ident = GlobProdId then
                 begin
-                  bi := produc.InfoBazT['PUMPS'];
+                  bi := Producent.InfoBazT['PUMPS'];
                   if bi <> NIL then
                     KluczePompIni := bi.tbsf;
                 end;
@@ -115,7 +118,7 @@ begin
     FindClose( KatSr );
   end;
 
-  InitDefProd := res;
+  InitDefProd := ListaProd;
 end;
 
 

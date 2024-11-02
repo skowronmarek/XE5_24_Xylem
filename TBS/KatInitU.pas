@@ -49,9 +49,10 @@ begin
 
 
     Application.ProcessMessages;
-    DozwBazy := '/PUMPS/SQL_PUMPS/PIPES/MOTORS/TANKS/PRESS/';  // 2024.10.13 MS dodany nowy typ baz
+    DozwBazy := '/PUMPS/PIPES/MOTORS/TANKS/PRESS/';  // 2024.10.13 MS dodany nowy typ baz
+    //DozwBazy := '/PUMPS/SQL_PUMPS/PIPES/MOTORS/TANKS/PRESS/';  // 2024.10.13 MS dodany nowy typ baz
 
-    InitDefProd( SciezkaBaz );  // Wywolanie KatProd / tworzy liste Producentow
+    InitDefProd( SciezkaBaz );  // Wywolanie KatProd / tworzy liste Producentow dla (SciezkaBaz) - zwykle katalog programu
 
     // 2024.10.18 FiltryPomp.Init;
     if Producenci.Komunikaty.CzySaOstrzerzenia then

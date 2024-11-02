@@ -33,7 +33,7 @@ type
   TProducent = class;
 
 
-  TBaseInfo  = class (IBaseInfo)
+  TBaseInfo  = class (IBaseInfo)          // IBaseInfo - pusty abstract
   public
     procedure   Init( const fn :string );        override;
     function    TBSFName  :string;               override;
@@ -45,12 +45,12 @@ type
   protected
 
   public
-    tbsf        :TIniFile;
+    tbsf        :TIniFile;                      // plik TBS poowiazany z baza
     constructor Create;
     destructor  Destroy;                         override;
 
     procedure   SetOwner( o :TProducent );
-    procedure   OutLineSet( ol :TOutLine );      virtual;
+    procedure   OutLineSet( ol :TOutLine );      virtual;  //??
     function    CanOutLineSet: Boolean;          virtual;
     function    GetBaseName( const id :string ): string; virtual;
     function    CreateTable( const id :string; AOwner :TComponent ): TTable;
@@ -289,15 +289,18 @@ begin
   tbsf  := TIniFile.Create(fn);
   DrvId := tbsf.ReadString( 'MAIN', 'DriverId', TypId );
   FActualBaseType := tbsf.ReadString( 'MAIN', 'Type', '' );
-  bi := Owner.CreateBInfo( DrvId );
+  bi := Owner.CreateBInfo( DrvId );                           // robi interfejs dla listy TProducenci
   if bi is TBaseInfo then
-    TBaseInfo(bi).SetOwner(self);
+    TBaseInfo(bi).SetOwner(self);                             // zmiana wlasciciela - baze z TProducenci na TProducent
   result := bi;
   if bi <> NIL then
-    bi.Init(fn)
+    bi.Init(fn)                                               // Robi indeksy dla plikow w bazie
 end;
 
-
+{------------------------------------------------}
+{ czyta bazy (pliki TBS) podpiete pod producenta }
+{ tworzy liste baz                               }
+{------------------------------------------------}
 procedure   TProducent.InitTBS( tbsf :TIniFile );
 var
   i         :Integer;
@@ -315,23 +318,25 @@ begin
   tbsf.ReadSection( 'BASES', BaseList );                                    // Czyta liste plkiow z TBS
   with BaseList do
   begin
-    for i := 0 to Count-1 do if StrInSet(Strings[i], DozwBazy ) then        // Sprawdza czy dozwolona
-    begin
-      try
-        s  := tbsf.ReadString( 'BASES', Strings[i], '' );
-        if s <> '' then
-        begin
-          bi := CreateBaseInfo(Strings[i], SciezkaDoBaz + '\' + s);
-          if bi <> NIL then
+    for i := 0 to Count-1 do
+    if StrInSet(Strings[i], DozwBazy ) then        // Sprawdza czy dozwolona  PUMPS/SQL_PUMPS/TANKS ...
+      begin
+        try
+          s  := tbsf.ReadString( 'BASES', Strings[i], '' );
+          //if (s <> '') and (copy(s,0,3)<> 'SQL' )  then
+          if s <> '' then
           begin
-            Objects[i] := bi;
-          end
-          else
-            Producenci.KomFmt(sPrKomBladInitBazy, [s, Nazwa]);
-        end;
-      except
-        on E :Exception do
-          Producenci.KomFmt(sPrKomBladInitBazy, [s, Nazwa, E.ClassName, E.Message]);
+            bi := CreateBaseInfo(Strings[i], SciezkaDoBaz + '\' + s);
+            if bi <> NIL then
+              begin
+                Objects[i] := bi;
+              end
+            else
+              Producenci.KomFmt(sPrKomBladInitBazy, [s, Nazwa]);
+          end;
+        except
+          on E :Exception do
+            Producenci.KomFmt(sPrKomBladInitBazy, [s, Nazwa, E.ClassName, E.Message]);
       end;
     end;
   end;
@@ -406,7 +411,8 @@ begin
       DBIRegenIndexes(Table.Handle);
     end;
     if FActualBaseType = 'PUMPS' then
-      thePompCount := Table.RecordCount;
+      thePompCount := Table.RecordCoun
+      t;  // zwraca liczbe pomp elementow podstawowych
   finally
     Table.Close;
     Table.Free;

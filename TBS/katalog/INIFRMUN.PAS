@@ -42,7 +42,7 @@ type
 
   public
     { Public declarations }
-    function  DodajProducenta( prod: TProducent ): integer;
+    function  DodajProducenta( prod: TProducent ): integer;    // zwraca liczbe pomp u producenta - nie uzywane
     procedure Aktualizuj;
   end;
 
@@ -56,6 +56,10 @@ implementation
 const
   sInitWaitOK = 'InitWaitOK';
 
+
+(**********************************************
+ * Wyswietla liczbe pomp na lisce producentow *
+ **********************************************)
 function  TInitForm.DodajProducenta( prod: TProducent ): integer;
 var
   FN      :string;

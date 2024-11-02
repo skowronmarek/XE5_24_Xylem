@@ -600,7 +600,7 @@ constructor TFormPompy.StworzDlaPompy( AOwner: TComponent;
                                        APompa: TPompa; AMDIChild :Boolean = true );
 var
   fld             :TField;
-  bi              :TPumpsBaseInfo;
+  bi              : TPumpsBaseInfo;
   ziarno          : double ; //dla grundfosa
   tmp             : ANSiString;
 begin

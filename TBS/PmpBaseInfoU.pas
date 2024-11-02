@@ -40,7 +40,7 @@ type
   end;
 
 
-  TPumpsBaseInfo = class (TBaseInfo)
+  TPumpsBaseInfo = class (TBaseInfo)                            // specyficzne info dla pomp
   private
     FObszFieldName: string;
     procedure InitGrupy( const BFName :string);
@@ -86,53 +86,53 @@ end;
 {----------------------------------------------------------------------------}
 procedure TPumpsBaseInfo.Init( const fn :string );
 var
-  list    :TStringList;
+  list    :TStringList;           // Lista plikow w bazie
   i       :Integer;
   s, s1   :string;
   BFName  :string;                { BaseFileName - nazwa pliku bazy }
 
 begin
   try
-    inherited Init( fn );
+    inherited Init( fn );                    // podpina plik TBS itp
     list      := TStringList.Create;
-    tbsf.ReadSection( 'FILES', list );
+    tbsf.ReadSection( 'FILES', list );       // czyta A, G, H ...
     with list do
     begin
       for i := 0 to Count-1 do
       begin
-        s1 := Strings[i];
-        s  := tbsf.ReadString( 'FILES', s1, '' );
+        s1 := Strings[i];                         // zaczyna od "A"
+        s  := tbsf.ReadString( 'FILES', s1, '' ); // czyta nazwy plikow dla A, G, H ...
         if s <> '' then
         begin
           BFName := ExtractFilePath(fn) + s;
           if (Length(s1) = 1) then
-          begin
-            if (s1[1] in ['H','G','M']) then
-              self.Owner.IndexBase( BFName, s1[1] )
-            else if (s1 = 'B') then
-              self.Owner.IndexBaseExpr( BFName, 'ID', 'ID', [ixUnique] )
-            else if s1 = 'T' then
             begin
-              self.Owner.IndexBaseExpr( BFName, 'TYP_ID','TYP_ID',[ixUnique]);
-              InitGrupy( BFName );
+              if (s1[1] in ['H','G','M']) then
+                self.Owner.IndexBase( BFName, s1[1] )
+              else if (s1 = 'B') then
+                self.Owner.IndexBaseExpr( BFName, 'ID', 'ID', [ixUnique] )
+              else if s1 = 'T' then
+                begin
+                  self.Owner.IndexBaseExpr( BFName, 'TYP_ID','TYP_ID',[ixUnique]);
+                  InitGrupy( BFName );
+                end
+              else if s1[1] = 'A' then
+                self.Owner.IndexABase( BFName );                                      // indeksuje baze "A"
             end
-            else if s1[1] = 'A' then
-              self.Owner.IndexABase( BFName );
-          end
           else
-          begin
-            s1 := Upper(s1);
-            if s1 = 'LINKS' then
             begin
-              self.Owner.IndexBaseExpr( BFName, 'IDS',
-                                        'ID1+ID2+ID2+ID4+ID5+ID6+ID7+ID8',
-                                        [ixExpression] );
-            end
-            else if (s1 = 'WAR') then
-            begin
-              self.Owner.IndexBaseExpr( BFName, 'ID', 'ID', [] )
+              s1 := Upper(s1);
+              if s1 = 'LINKS' then
+              begin
+                self.Owner.IndexBaseExpr( BFName, 'IDS',
+                                          'ID1+ID2+ID2+ID4+ID5+ID6+ID7+ID8',
+                                          [ixExpression] );
+              end
+              else if (s1 = 'WAR') then
+              begin
+                self.Owner.IndexBaseExpr( BFName, 'ID', 'ID', [] )
+              end;
             end;
-          end;
         end;
       end;
     end;
